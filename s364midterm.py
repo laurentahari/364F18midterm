@@ -163,9 +163,9 @@ def display_all_directors():
        directorname = form.directorname.data
        save_director(db.session, directorname)
 
-    error = [l for l in form.error.values()]
-    if len(error) > 0:
-        flash("ERROR IN SUBMISSION - " + str(error))
+    errors = [l for l in form.errors.values()]
+    if len(errors) > 0:
+        flash("ERROR IN FORM SUBMISSION - " + str(errors))
 
     return render_template('view_all_directors.html',form = form, view_all_directors=Director.query.all())
 
@@ -178,9 +178,9 @@ def display_all_titles():
         save_titles(db.session, titlename)
  
 
-    error = [l for l in form.error.values()]
-    if len(error) > 0:
-        flash("ERROR IN SUBMISSION - " + str(error))
+    errors = [l for l in form.errors.values()]
+    if len(errors) > 0:
+        flash("ERROR IN FORM SUBMISSION - " + str(errors))
 
     return render_template('view_all_titles.html', form = form, view_all_titles = Title.query.all() )
 
