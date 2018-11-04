@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('display_all_directors')}}" method="POST">
+	{{ form.hidden_tag() }}
+    {{ form.directorname.label() }}{{ form.directorname() }}<br>
+    {{ form.submit() }}
+</form>
+
+<ul>
+{% for di in view_all_directors %}
+  <li>{{ di.directorname }}</li><br>
+ <br><br>
+{% endfor %}
+</ul>
+
+{% if not view_all_directors %}
+    There are no saved directors to show.
+{% endif %}
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+{% endblock %}

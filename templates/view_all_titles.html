@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action ="{{url_for('display_all_titles')}}" methods="GET">
+    {{ form.hidden_tag() }}
+	{{ form.titlename.label() }}{{form.titlename() }}<br>
+	{{ form.submit() }}
+</form>
+
+<ul>
+{% for ti in view_all_titles %}
+  <li>{{ ti.title }}</li><br>
+ <br><br>
+{% endfor %}
+</ul>
+
+{% if not view_all_titles %}
+    There are no saved titles to display.
+{% endif %}
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+{% endblock %}
+

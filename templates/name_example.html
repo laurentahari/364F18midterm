@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('people')}}" method="GET">
+	{{ form.hidden_tag() }}
+    {{ form.person.label() }}{{ form.person()}}<br>
+    {{ form.submit() }}
+</form>
+
+<ul>
+{% for p in people %}
+  <li>{{ p.person }}</li><br>
+ <br><br>
+{% endfor %}
+</ul>
+
+{% if not people %}
+    There are no saved people to display.
+{% endif %}
+
+
+<div>
+{% for message in get_flashed_messages() %}
+    <strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}
